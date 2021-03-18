@@ -1,0 +1,25 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: react-example
+  namespace: default
+spec:
+  template:
+    metadata:
+      name: react-example-second
+    spec:
+      containers:
+        - image: docker.io/anaisurlichs/knative-demo:new
+          ports:
+          - containerPort: 80
+          imagePullPolicy: Always
+          env:
+            - name: TARGET
+              value: "Knative React v2"
+  traffic:
+  - tag: new
+    revisionName: react-example-second
+    percent: 100
+  - tag: current
+    latestRevision: true
+    percent: 0
