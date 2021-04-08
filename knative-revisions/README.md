@@ -52,7 +52,7 @@ spec:
 ```
 
 ```
-klubectl apply -f config.yaml
+kubectl apply -f config.yaml
 ```
 
 get the url for istio service
